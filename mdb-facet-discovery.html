@@ -27,6 +27,8 @@ Custom property | Description | Default
     <style>
        :host {
         display: block;
+        padding: var(--standard-padding, 20px);
+        --paper-checkbox-label-color: var(--mdb-secondary-text-dark, #000);
       }
 
        :host .facet {
@@ -50,6 +52,9 @@ Custom property | Description | Default
        :host mdb-search-box {
         padding-top: 20px;
         padding-bottom: 20px;
+        --mdb-search-box-container: {
+          margin: 0;
+        }
       }
 
        :host mdb-radio-list iron-icon {
