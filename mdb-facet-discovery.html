@@ -61,6 +61,10 @@ Custom property | Description | Default
         --iron-icon-width: 18px;
         --iron-icon-height: 18px;
       }
+
+       :host paper-radio-button {
+        display: inline;
+      }
     </style>
     <div>
       <mdb-title help-text="[[helpText]]" level="3">[[facetType]]</mdb-title>
@@ -70,9 +74,9 @@ Custom property | Description | Default
       <div class="facet-list">
         <template is="dom-repeat" items="{{facets}}">
           <div class="facet">
-            <paper-checkbox>[[item.name]] ([[item.recommendationFactor]])</paper-checkbox>
+            <paper-checkbox>[[item.label]] ([[item.relevance]]%)</paper-checkbox>
             <template is="dom-if" if="{{_isDefineMode(mode)}}">
-              <mdb-radio-list size="small" data-facet$="[[item.name]]" selected="{{item.recommended}}" on-paper-radio-group-changed="_facetRecommendationChanged">
+              <mdb-radio-list size="small" data-facet$="[[item.label]]" selected="[[_isRecommended(item)]]" on-paper-radio-group-changed="_facetRecommendationChanged">
                 <paper-radio-button name="yes">
                   &#x2713;
                 </paper-radio-button>
@@ -132,6 +136,10 @@ Custom property | Description | Default
 
       _isDefineMode: function (mode) {
         return mode === 'define';
+      },
+
+      _isRecommended: function (item) {
+        return item.verified === 'Y' ? 'yes' : item.verified === 'N' ? 'no' : 'maybe';
       }
 
     });
