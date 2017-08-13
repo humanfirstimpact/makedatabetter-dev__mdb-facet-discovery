@@ -72,23 +72,28 @@ Custom property | Description | Default
         <iron-icon class="search-icon" suffix icon="icons:search"></iron-icon>
       </mdb-search-box>
       <div class="facet-list">
-        <template is="dom-repeat" items="{{facets}}">
-          <div class="facet">
-            <paper-checkbox>[[item.label]] ([[item.relevance]]%)</paper-checkbox>
-            <template is="dom-if" if="{{_isDefineMode(mode)}}">
-              <mdb-radio-list size="small" data-facet$="[[item.label]]" selected="{{item.verified}}" on-paper-radio-group-changed="_facetRecommendationChanged">
-                <paper-radio-button name="Y">
-                  &#x2713;
-                </paper-radio-button>
-                <paper-radio-button name="N">
-                  &#x2717;
-                </paper-radio-button>
-                <paper-radio-button name="F">
-                  ?
-                </paper-radio-button>
-              </mdb-radio-list>
-            </template>
-          </div>
+        <template is="dom-if" if="[[facets.length]]">
+          <template is="dom-repeat" items="{{facets}}">
+            <div class="facet">
+              <paper-checkbox>[[item.label]] ([[item.relevance]]%)</paper-checkbox>
+              <template is="dom-if" if="{{_isDefineMode(mode)}}">
+                <mdb-radio-list size="small" data-facet$="[[item.label]]" selected="{{item.verified}}" on-paper-radio-group-changed="_facetRecommendationChanged">
+                  <paper-radio-button name="Y">
+                    &#x2713;
+                  </paper-radio-button>
+                  <paper-radio-button name="N">
+                    &#x2717;
+                  </paper-radio-button>
+                  <paper-radio-button name="F">
+                    ?
+                  </paper-radio-button>
+                </mdb-radio-list>
+              </template>
+            </div>
+          </template>
+        </template>
+        <template is="dom-if" if="[[!facets.length]]">
+          <p>No [[_getPlaceholder(facetType)]] found.</p>
         </template>
       </div>
     </div>
