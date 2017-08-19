@@ -6,6 +6,7 @@
 <link rel="import" href="../paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../paper-radio-button/paper-radio-button.html">
 <link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../paper-styles/typography.html">
 
 <!--
 `mdb-facet-discovery`
@@ -29,6 +30,7 @@ Custom property | Description | Default
         display: block;
         padding: var(--standard-padding, 20px);
         --paper-checkbox-label-color: var(--mdb-secondary-text-dark, #000);
+        @apply(--paper-font-common-base);
       }
 
        :host .facet {
