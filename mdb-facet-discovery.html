@@ -79,14 +79,14 @@ Custom property | Description | Default
             <div class="facet">
               <paper-checkbox>[[item.label]] ([[item.relevance]]%)</paper-checkbox>
               <template is="dom-if" if="{{_isDefineMode(mode)}}">
-                <mdb-radio-list size="small" data-facet$="[[item.label]]" selected="{{item.verified}}" on-paper-radio-group-changed="_facetRecommendationChanged">
+                <mdb-radio-list size="small" data-facet$="[[item.label]]" selected="{{item.assessment}}" on-paper-radio-group-changed="_facetRecommendationChanged">
                   <paper-radio-button name="Y">
                     &#x2713;
                   </paper-radio-button>
                   <paper-radio-button name="N">
                     &#x2717;
                   </paper-radio-button>
-                  <paper-radio-button name="F">
+                  <paper-radio-button name="M">
                     ?
                   </paper-radio-button>
                 </mdb-radio-list>
@@ -137,7 +137,7 @@ Custom property | Description | Default
         var facet = e.currentTarget.attributes.getNamedItem('data-facet').value;
         this.fire('facet-recommendation-changed', {
           facet: facet,
-          verified: e.currentTarget.selected
+          assessment: e.currentTarget.selected
         });
       },
 
