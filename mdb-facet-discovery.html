@@ -80,14 +80,14 @@ Custom property | Description | Default
               <paper-checkbox>[[item.label]] ([[item.relevance]]%)</paper-checkbox>
               <template is="dom-if" if="{{_isDefineMode(mode)}}">
                 <mdb-radio-list size="small" data-facet$="[[item.label]]" selected="{{item.assessment}}" on-paper-radio-group-changed="_facetRecommendationChanged">
-                  <paper-radio-button name="Y">
+                  <paper-radio-button name="Y" title="YES">
                     &#x2713;
                   </paper-radio-button>
-                  <paper-radio-button name="N">
-                    &#x2717;
+                  <paper-radio-button name="N" title="NO">
+                      &#x2717;
                   </paper-radio-button>
-                  <paper-radio-button name="M">
-                    ?
+                  <paper-radio-button name="M" title="MAYBE">
+                      ?
                   </paper-radio-button>
                 </mdb-radio-list>
               </template>
