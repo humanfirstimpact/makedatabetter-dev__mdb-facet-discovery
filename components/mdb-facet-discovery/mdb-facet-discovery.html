@@ -38,6 +38,7 @@ Custom property | Description | Default
         @apply(--layout);
         @apply(--layout-justified);
         @apply(--mdb-facet-container);
+        color: var(--mdb-secondary-text-dark, #000);
       }
 
        :host .facet-list {
@@ -77,17 +78,20 @@ Custom property | Description | Default
         <template is="dom-if" if="[[facets.length]]">
           <template is="dom-repeat" items="{{facets}}">
             <div class="facet">
-              <paper-checkbox>[[item.label]] ([[item.relevance]]%)</paper-checkbox>
-              <template is="dom-if" if="{{_isDefineMode(mode)}}">
+              <template is="dom-if" if="[[!_isDefineMode(mode)]]">
+                <paper-checkbox>[[item.label]] ([[item.relevance]]%)</paper-checkbox>
+              </template>
+              <template is="dom-if" if="[[_isDefineMode(mode)]]">
+                [[item.label]] ([[item.relevance]]%)
                 <mdb-radio-list size="small" data-facet$="[[item.label]]" selected="{{item.assessment}}" on-paper-radio-group-changed="_facetRecommendationChanged">
                   <paper-radio-button name="Y" title="YES">
                     &#x2713;
                   </paper-radio-button>
                   <paper-radio-button name="N" title="NO">
-                      &#x2717;
+                    &#x2717;
                   </paper-radio-button>
                   <paper-radio-button name="M" title="MAYBE">
-                      ?
+                    ?
                   </paper-radio-button>
                 </mdb-radio-list>
               </template>
