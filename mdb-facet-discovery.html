@@ -79,7 +79,7 @@ Custom property | Description | Default
           <template is="dom-repeat" items="{{facets}}">
             <div class="facet">
               <template is="dom-if" if="[[!_isDefineMode(mode)]]">
-                <paper-checkbox>[[item.label]] ([[item.relevance]]%)</paper-checkbox>
+                <paper-checkbox checked='{{item.checked}}' on-change='_facetSelectionChanged'>[[item.label]] ([[item.relevance]]%)</paper-checkbox>
               </template>
               <template is="dom-if" if="[[_isDefineMode(mode)]]">
                 [[item.label]] ([[item.relevance]]%)
@@ -148,6 +148,14 @@ Custom property | Description | Default
       _isDefineMode: function (mode) {
         return mode === 'define';
       },
+
+      _facetSelectionChanged: function(e){
+        this.fire('facet-selection-changed', {
+          facet : e.model.get('item'),
+          checked: e.currentTarget.checked,
+          facetType: this.facetType
+        });
+      }
     });
   </script>
 </dom-module>
